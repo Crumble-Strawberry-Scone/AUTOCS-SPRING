@@ -316,6 +316,7 @@ public class WorkStatusService {
     @Transactional
     public Object saveAttendance(int employeeNo) {
 
+        log.info("test!!!");
         WorkStatus workStatus =new WorkStatus();
 
         workStatus.setAttendanceTime(new Date());
@@ -335,7 +336,6 @@ public class WorkStatusService {
         }
 
         Date currentDate = new Date();
-
         Date workDate = new Date(recentlyWorkStatus.getWorkStatus().getAttendanceTime().getTime());
 
         log.info(" currentDate.getDay() != workDate.getDay()" , currentDate.getDay()+   workDate.getDay());

@@ -7,6 +7,7 @@ import com.css.autocsfinal.common.ResponseDTO;
 import com.css.autocsfinal.mail.dto.MailDTO;
 import com.css.autocsfinal.mail.service.MailService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping
+@Tag(name = "Mail", description = "쪽지함 API")
 public class MailController {
 
     private final MailService mailService;
@@ -25,7 +27,9 @@ public class MailController {
     // 메일 조회
     @GetMapping("/mail/{employeeNo}/{page}/{search}")
     @Operation(summary = "쪽지함 화면", description = "로그인된 직원의 정보를 가져와 해당 직원의 받은 쪽지를 출력합니다.", tags = {"WorkStatusController"})
-    public ResponseEntity<ResponseDTO> findMail(@PathVariable int employeeNo,@PathVariable(name = "page", required = false ) int offset, @PathVariable(name = "search", required = false ) String title){
+    public ResponseEntity<ResponseDTO> findMail(@PathVariable int employeeNo,
+                                                @PathVariable(name = "page", required = false ) int offset,
+                                                @PathVariable(name = "search", required = false ) String title){
 
         log.info("=========================================>{}", title);
         int total;
@@ -34,7 +38,6 @@ public class MailController {
 
         PagingResponseDTO pagingResponseDTO = new PagingResponseDTO();
 
-        // 검색 유무 확인
         if(title.equals("절대로아무도검색하지않을만한값입니다.")){
             total =  mailService.findByMailAllTotal(employeeNo);
             pagingResponseDTO.setData(mailService.findMail(employeeNo, cri));

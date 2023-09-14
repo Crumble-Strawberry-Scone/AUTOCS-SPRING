@@ -50,6 +50,7 @@ public class MailService {
 
         String name = employeeAndDepartmentAndPosition.getName();
 
+        log.info(positionName + name);
 
         List<Mail> mailList = mailRepository.findByPositionAndReceiverOrderByMailNoDesc(positionName, name, paging);
 
@@ -77,8 +78,6 @@ public class MailService {
         List<Mail> mailList = mailRepository.findByPositionAndReceiverAndTitleLikeOrderByMailNoDesc(positionName, name, paging, title);
 
         List<MailDTO> mailDTOList = mailList.stream().map(Mail -> modelMapper.map(Mail, MailDTO.class) ).collect(Collectors.toList());
-
-
 
         return mailDTOList;
     }
@@ -245,6 +244,7 @@ public class MailService {
     public Object mailSent(int employeeNo, Criteria cri) {
 
 
+
         int index = cri.getPageNum() - 1;
         int count = cri.getAmount();
         Pageable paging = PageRequest.of(index, count);
@@ -260,6 +260,7 @@ public class MailService {
 
         List<MailDTO> mailDTOList = mailList.stream().map(mail -> modelMapper.map(mail, MailDTO.class)).collect(Collectors.toList());
 
+        log.info("마지막테스트입니다.{}", mailDTOList);
 
         return mailDTOList;
     }

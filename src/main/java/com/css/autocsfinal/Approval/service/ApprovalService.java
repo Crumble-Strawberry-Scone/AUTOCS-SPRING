@@ -685,6 +685,7 @@ public class ApprovalService {
 
     /* 결재 대기 페이지 */
     public List<ApprovalAndDocumentDTO> appWaitPaging(Criteria cri, int employeeNo) {
+        log.info("================================= employeeNo {}", employeeNo);
 
         int index = cri.getPageNum() - 1;
         int count = cri.getAmount();

@@ -5,6 +5,7 @@ import com.css.autocsfinal.workstatus.dto.WorkStatusDTO;
 import com.css.autocsfinal.workstatus.repository.WorkStatusListRepository;
 import com.css.autocsfinal.workstatus.service.WorkStatusService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping
 @RequiredArgsConstructor
 @Slf4j
+@Tag(name = "WorkStatus", description = "근태 관리 API")
 public class WorkStatusController {
 
     private final WorkStatusService workStatusService;

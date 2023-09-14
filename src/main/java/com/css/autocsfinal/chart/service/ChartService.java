@@ -23,7 +23,7 @@ public class ChartService {
         List<DepartmentEntity> deptList = departmentRepository.findAll();
         log.info("deptList : ", deptList);
         log.info("[ChartService] DeptResult findDept findAll 완료");
-        DeptResult result = deptList.stream().map(DeptResult::new).collect(Collectors.toList()).get(deptList.size() - 1);
+        DeptResult result = deptList.stream().map(DeptResult::new).collect(Collectors.toList()).get(1);
 
         return result;
     }

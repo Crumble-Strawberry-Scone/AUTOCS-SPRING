@@ -265,14 +265,14 @@ public class MarketService {
             OutFileDTO outFileDTO = new OutFileDTO();
 
             // OutFile 엔티티로 매핑하고 저장
-            OutFile insertFile = modelMapper.map(outFileDTO, OutFile.class);
-            insertFile.setOrignal(replaceFileName);
-            insertFile.setChange("계약 종료/해지 확인서" + storeInfoDTO.getStoreNo());
-            insertFile.setRegistDate(Date.valueOf(LocalDate.now()));
-            insertFile.setKine("계약 종료/해지 확인서");
-            insertFile.setState('W');
-            insertFile.setStoreNo(storeInfoDTO.getStoreNo());
+            outFileDTO.setOriginal(replaceFileName);
+            outFileDTO.setChange("계약 종료/해지 확인서" + storeInfoDTO.getStoreNo());
+            outFileDTO.setRegistDate(Date.valueOf(LocalDate.now()));
+            outFileDTO.setKind("계약 종료/해지 확인서");
+            outFileDTO.setState('W');
+            outFileDTO.setStoreNo(storeInfoDTO.getStoreNo());
 
+            OutFile insertFile = modelMapper.map(outFileDTO, OutFile.class);
             OutFile savedFile = outFileRepository.save(insertFile);
 
             log.info("[MarketService] insertOut End ===================");
