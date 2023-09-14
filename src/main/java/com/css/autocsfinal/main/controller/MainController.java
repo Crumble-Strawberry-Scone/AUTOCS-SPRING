@@ -6,6 +6,7 @@ import com.css.autocsfinal.main.dto.TodoDTO;
 import com.css.autocsfinal.main.service.MainService;
 import com.css.autocsfinal.schedule.entity.ScheduleDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/mainContent")
+@Tag(name = "Main", description = "메인화면 API")
 public class MainController {
 
     private final MainService mainService;

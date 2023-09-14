@@ -236,6 +236,7 @@ public class MemberController {
     }
 
     // 한명회원 정보 조회
+    @Operation(summary = "마이페이지에 불러올 사원의 정보 조회(프로필 사진 포함)", description = "사원 한명의 정보를 조회합니다.(프로필 사진 포함)", tags = {"MemberController" })
     @GetMapping("/{memberNo}")
     public ResponseEntity<ResponseDTO> getEmployeeOne(@PathVariable int memberNo) {
         System.out.println("check ==========================");
@@ -249,6 +250,7 @@ public class MemberController {
     }
 
     // 한명 매장 정보 조회
+    @Operation(summary = "마이페이지에 불러올 매장 정보 조회", description = "하나의 매장의 정보를 조회합니다.", tags = {"MemberController" })
     @GetMapping("store/{memberNo}")
     public ResponseEntity<ResponseDTO> getStoreOne(@PathVariable int memberNo) {
 
@@ -256,7 +258,7 @@ public class MemberController {
         StoreInfoDTO storeInfo = memberService.findStoreId(memberNo);
         HttpStatus httpStatus = HttpStatus.OK;
 
-        ResponseDTO responseDTO = new ResponseDTO(httpStatus, "사원 조회 성공", storeInfo);
+        ResponseDTO responseDTO = new ResponseDTO(httpStatus, "매장 조회 성공", storeInfo);
 
         return ResponseEntity.status(httpStatus).body(responseDTO);
     }

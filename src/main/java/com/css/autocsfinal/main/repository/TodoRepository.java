@@ -18,8 +18,5 @@ public interface TodoRepository extends JpaRepository<Todo,Integer> {
     // 멤버번호로 리스트조회
     List<Todo> findByMemberNo(int memberNo);
 
-//    // 멤버번호로 리스트조회
-//    Todo findByTodoNo(int todoNo);
-//
-//    void deleteByTodoNo(int todoNo);
+
 }

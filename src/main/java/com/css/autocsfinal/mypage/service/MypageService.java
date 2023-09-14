@@ -69,7 +69,7 @@ public class MypageService {
     public String updateMemberInfo(EmployeeAndDepartmentAndPositionDTO employeeAndDepartmentAndPositionDTO , MultipartFile fileImage)  {
             // 멤버 번호 담기
             int memberNo = employeeAndDepartmentAndPositionDTO.getMemberNo();
-        log.info("[MypageService] updateMemberInfo memberNo : {} " , memberNo);
+            log.info("[MypageService] updateMemberInfo memberNo : {} " , memberNo);
             //사진파일 매핑
             String imageName = UUID.randomUUID().toString().replace("-", "");
             String replaceFileName = null;
@@ -80,10 +80,6 @@ public class MypageService {
             int result = 0;
 
             try {
-
-
-
-
                 if(fileImage != null ) {
                     MemberFile memberFile = new MemberFile();
                     replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, fileImage);
@@ -125,19 +121,9 @@ public class MypageService {
     public String checkPwd(int memberNo ,String checkpw) {
 
         Member member = memberRepository.findByNo(memberNo);
-        log.info("[MypageService] checkPwd Start ======================================");
-        log.info("[MypageService] checkPwd member : {} " , member);
-        log.info("[MypageService] 기존회원의 비밀번호 : {} " , member.getPwd());
-        log.info("[MypageService] checkpw : {} " , checkpw);
-
-
         String pw = member.getPwd();  // 기존 비밀번호
         boolean result = passwordEncoder.matches(checkpw, pw);
-        log.info("[MypageService] 비밀번호 일치 결과 : {} " , result);
-        log.info("[MypageService] checkPwd end ======================================");
-
         return result? "true" : "false";
-
 
     }
 
@@ -145,20 +131,14 @@ public class MypageService {
     // 비밀번호 변경
     public String changePwd(int memberNo, String newPw) {
 
-        Member member = memberRepository.findByNo(memberNo);
-        log.info("[MypageService] changePwd Start ======================================");
-        log.info("[MypageService] changePwd member : {} " , member);
-        log.info("[MypageService] 기존회원의 비밀번호 : {} " , member.getPwd());
         int result = 0;
+        Member member = memberRepository.findByNo(memberNo);
         String encodedPassword = passwordEncoder.encode(newPw);
-        log.info("[MypageService] encodedPassword : {} " , encodedPassword);
 
         if(encodedPassword != null) {
 
             member.setPwd(encodedPassword);
-            log.info("[MypageService] 기존회원의 바뀐 비밀번호 : {} " , member.getPwd());
             memberRepository.save(member);
-            log.info("[MypageService] changePwd 성공!!!!!!!! ======================================");
             result = 1;
 
         }

@@ -9,6 +9,7 @@ import com.css.autocsfinal.main.service.TodoService;
 import com.css.autocsfinal.member.dto.MemberDTO;
 import com.css.autocsfinal.member.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/todo")
+@Tag(name = "TodoList", description = "투두리스트 API")
 public class TodoController {
     private final TodoService todoService;
     public TodoController(TodoService todoService) {
@@ -29,7 +31,7 @@ public class TodoController {
 
 
     // 전체 조회
-    @Operation(summary = "모든회원의 todolist 조회", description = "전체 회원의 todoList를 불러옵니다. ", tags = {"TodoController" })
+    @Operation(summary = "가입된 모든회원의 todolist 조회", description = "전체 회원의 todoList를 불러옵니다. ", tags = {"TodoController" })
     @GetMapping("/getTodolist")
     public ResponseEntity<ResponseDTO> getTodoList() {
 
@@ -45,7 +47,7 @@ public class TodoController {
 
 
     // 회원별 조회
-    @Operation(summary = "회원별 TodoList 조회", description = "회원 개인별 TodoList를 조회합니다.", tags = {"TodoController" })
+    @Operation(summary = "개인별 TodoList 조회", description = "회원 한명의 투두 리스트를 조회합니다.", tags = {"TodoController" })
     @GetMapping("/{memberNo}")
     public ResponseEntity<ResponseDTO> getTodoListMember(@PathVariable int memberNo){
 
@@ -67,7 +69,7 @@ public class TodoController {
 
 
     // 저장
-    @Operation(summary = "Todo(할일) 저장", description = "일정(Todo)을 입력하면 저장합니다.", tags = {"TodoController" })
+    @Operation(summary = "Todo(할일) 저장", description = "Todo(할일)을 입력하면 저장합니다.", tags = {"TodoController" })
     @PostMapping("/insertTodo")
     public ResponseEntity<ResponseDTO> saveTodo(@RequestBody TodoDTO todoDTO){
 
@@ -75,7 +77,7 @@ public class TodoController {
     }
 
     //선택 삭제
-    @Operation(summary = "Todo(할일) 삭제", description = "일정(Todo)을 선택하여 삭제합니다.", tags = {"TodoController" })
+    @Operation(summary = "Todo(할일) 삭제", description = "Todo(할일)을 선택하여 삭제합니다.", tags = {"TodoController" })
     @DeleteMapping ("/deleteTodo")
     public ResponseEntity<ResponseDTO> deleteTodo(@RequestBody TodoDTO todoDTO){
 
@@ -85,21 +87,21 @@ public class TodoController {
     }
 
     //전체 삭제
-    @Operation(summary = "모든 회원의 TodoList를 전체 삭제합니다.", description = "전체 회원의 TodoList를 삭제하여 데이터를 리셋합니다.", tags = {"TodoController" })
+    @Operation(summary = "전체 회원의 TodoList를 전체 삭제합니다.", description = "전체 회원의 TodoList를 삭제하여 데이터를 리셋합니다.", tags = {"TodoController" })
     @DeleteMapping("/deleteAllTodo")
     public ResponseEntity<ResponseDTO> deleteTodoAll(){
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "전체 삭제.", todoService.deleteAllTodo()));
     }
 
     //상태 변화
-    @Operation(summary = "Todo(할일) 상태변경", description = "일정(Todo)을 체크하여 상태를 변경합니다 (완료/진행)", tags = {"TodoController" })
+    @Operation(summary = "Todo(할일) 상태변경", description = "Todo(할일)을 체크하여 진행 상태를 변경합니다 (완료/진행)", tags = {"TodoController" })
     @PutMapping("/toggle")
     public ResponseEntity<ResponseDTO> toggleTodo(@RequestBody TodoDTO todoDTO) {
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "상태 변경.", todoService.toggleTodo(todoDTO)));
     }
 
     //수정
-    @Operation(summary = "Todo(할일) 수정", description = "일정(Todo)을 선택하여 내용을 수정합니다.", tags = {"TodoController" })
+    @Operation(summary = "Todo(할일) 수정", description = "Todo(할일)을 선택하여 내용을 수정합니다.", tags = {"TodoController" })
     @PutMapping("/updateTodo")
     public ResponseEntity<ResponseDTO> updateTodo(@RequestBody TodoDTO todoDTO){
         return ResponseEntity.ok().body(new ResponseDTO(HttpStatus.OK, "투두 수정", todoService.updateTodo(todoDTO)));

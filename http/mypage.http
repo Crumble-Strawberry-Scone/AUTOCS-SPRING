@@ -1,5 +1,3 @@
-
-
 ### 사원 조회
 GET http://localhost:8080/mypage/memberInfo
 Content-Type: application/json

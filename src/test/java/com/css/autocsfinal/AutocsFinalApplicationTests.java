@@ -294,12 +294,12 @@ class AutocsFinalApplicationTests {
     @Test
  void calendertest () {
 
-        int num  = 240;
+        int num  = 354;
         Member member = memberRepository.findByNo(num);
         Schedule schedule = new Schedule();
-        schedule.setContent("영업부 전체 회식");
-        schedule.setName("영업부 전체 회식");
-        schedule.setPlace("하남돼지집");
+        schedule.setContent("부산지역 가맹점 시설 점검");
+        schedule.setName("부산지역 가맹점 시설 점검");
+        schedule.setPlace("부산");
         schedule.setEndDate(new Date());
         schedule.setStartDate(new Date());
         schedule.setMember(member);

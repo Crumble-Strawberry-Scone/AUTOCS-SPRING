@@ -100,7 +100,6 @@ public List<TodoDTO> getTodo() {
         try{
 
             Todo insertTodo = modelMapper.map(todoDTO,Todo.class);
-
             todoRepository.save(insertTodo);
             result=1;
 

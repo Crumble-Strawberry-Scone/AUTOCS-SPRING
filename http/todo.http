@@ -1,4 +1,4 @@
-## 투두리스트 조회
+### 투두리스트 조회
 GET http://localhost:8080/todo/getTodolist
 Accept: */*
 
