@@ -45,10 +45,10 @@ image:
   add-resource-handler: /applyMimgs/**
 
   image-dir: src/main/resources/static/applyMimgs
-  image-url: http://localhost:8080/applyMimgs/
+  image-url: http://3.39.172.9:8080/applyMimgs/
 
-  image-dir2: C:\dev\empImg
-  image-url2: http://localhost:8080/empImg/
+  image-dir2: file:////dev\empImg
+  image-url2: http://3.39.172.9:8080/empImg/
 
 ## Swagger 설정
 springdoc:
