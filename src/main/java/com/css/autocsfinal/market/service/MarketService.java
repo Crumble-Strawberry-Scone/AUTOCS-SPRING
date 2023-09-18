@@ -29,9 +29,10 @@ public class MarketService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     /* 이미지 저장 할 위치 및 응답 할 이미지 주소 */
-    @Value("${image.image-dir}")
+    @Value("${image.image-dir2}")
     private String IMAGE_DIR;
-    @Value("${image.image-url}")
+
+    @Value("${image.image-url2}")
     private String IMAGE_URL;
 
     private final ModelMapper modelMapper;
@@ -265,7 +266,9 @@ public class MarketService {
             OutFileDTO outFileDTO = new OutFileDTO();
 
             // OutFile 엔티티로 매핑하고 저장
-            outFileDTO.setOriginal(replaceFileName);
+            if(replaceFileName != null) {
+                outFileDTO.setOriginal(replaceFileName);
+            }
             outFileDTO.setChange("계약 종료/해지 확인서" + storeInfoDTO.getStoreNo());
             outFileDTO.setRegistDate(Date.valueOf(LocalDate.now()));
             outFileDTO.setKind("계약 종료/해지 확인서");

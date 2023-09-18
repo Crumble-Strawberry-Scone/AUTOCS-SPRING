@@ -51,11 +51,12 @@ public class BoardService {
         this.memberRepository = memberRepository;
     }
 
-    /* 이미지 저장 할 위치 및 응답 할 이미지 주소 */
-    @Value("${image.image-dir}")
-    private String IMAGE_DIR;
-    @Value("${image.image-url}")
-    private String IMAGE_URL;
+    @Value("${image.image-dir2}")
+    private String IMAGE_DIR2;
+
+    @Value("${image.image-url2}")
+    private String IMAGE_URL2;
+
 
 
     //모든 게시물 조회
@@ -119,7 +120,7 @@ public class BoardService {
         try {
             for (MultipartFile fileImage : fileImages) {
                 String imageName = UUID.randomUUID().toString().replace("-", "");
-                String replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, fileImage);
+                String replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR2, imageName, fileImage);
 
                 log.info("[BoardService] insert Image Name : {}", replaceFileName);
 
@@ -144,7 +145,7 @@ public class BoardService {
         } catch (Exception e) {
             log.error("Error while inserting apply form: {}", e.getMessage());
             for (BoardFile savedFile : savedFiles) {
-                FileUploadUtils.deleteFile(IMAGE_DIR, savedFile.getOriginal());
+                FileUploadUtils.deleteFile(IMAGE_DIR2, savedFile.getOriginal());
             }
             throw new RuntimeException(e);
         }
@@ -201,7 +202,7 @@ public class BoardService {
             if (boardFiles != null && !boardFiles.isEmpty()) {
                 for (BoardFile boardFile : boardFiles) {
                     String originalFileName = boardFile.getOriginal();
-                    File file = new File(IMAGE_DIR, originalFileName);
+                    File file = new File(IMAGE_DIR2, originalFileName);
 
                     // 파일이 존재하면 삭제
                     if (file.exists()) {
@@ -216,7 +217,7 @@ public class BoardService {
             List<BoardFile> savedFiles = new ArrayList<>();
             for (MultipartFile fileImage : fileImages) {
                 String imageName = UUID.randomUUID().toString().replace("-", "");
-                String replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR, imageName, fileImage);
+                String replaceFileName = FileUploadUtils.saveFile(IMAGE_DIR2, imageName, fileImage);
 
                 log.info("[BoardService] insert Image Name : {}", replaceFileName);
 
@@ -319,7 +320,7 @@ public class BoardService {
         List<String> fileUrls = new ArrayList<>();
 
         for (BoardFile file : fileList) {
-            fileUrls.add(IMAGE_URL + file.getOriginal());
+            fileUrls.add(IMAGE_URL2 + file.getOriginal());
         }
 
         boardDTO.setFileUrls(fileUrls);
