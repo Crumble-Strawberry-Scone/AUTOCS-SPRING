@@ -5,7 +5,7 @@ Accept: */*
 
 
 ### 회원정보 변경을 위한 불러오기
-GET http://localhost:8080/member/1
+GET http://localhost:8080/member/320
 Content-Type: application/json
 Accept: */*
 
@@ -89,6 +89,6 @@ Accept: */*
 
 
 ### 멤버 한명의 일정 가지고 오기
-GET http://localhost:8080/mainContent/shortDaily/240
+GET http://localhost:8080/mainContent/shortDaily/320
 Content-Type: application/json
 Accept: */*
