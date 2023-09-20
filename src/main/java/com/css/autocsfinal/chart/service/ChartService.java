@@ -5,6 +5,7 @@ import com.css.autocsfinal.chart.entity.DepartmentEntity;
 import com.css.autocsfinal.chart.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,10 +21,10 @@ public class ChartService {
     public DeptResult findDept() {
 
         log.info("[ChartService] DeptResult findDept 실행");
-        List<DepartmentEntity> deptList = departmentRepository.findAll();
+        List<DepartmentEntity> deptList = departmentRepository.findAll(Sort.by("upperDeptCode"));
         log.info("deptList : ", deptList);
         log.info("[ChartService] DeptResult findDept findAll 완료");
-        DeptResult result = deptList.stream().map(DeptResult::new).collect(Collectors.toList()).get(1);
+        DeptResult result = deptList.stream().map(DeptResult::new).collect(Collectors.toList()).get(deptList.size() - 1);
 
         return result;
     }
