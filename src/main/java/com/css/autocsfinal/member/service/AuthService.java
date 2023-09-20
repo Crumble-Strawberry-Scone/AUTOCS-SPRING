@@ -104,7 +104,7 @@ public class AuthService {
         /* 1. 아이디 조회 */
         Member member = memberRepository.findById(memberDTO.getId());
 
-        // 1-1. 같이 토큰에 넣어줄 직원 정보 조회
+        // 1-1. 같이 토큰에 넣어줄 영업점 정보 조회
         StoreInfo store = storeInfoRepository.findByMemberNo(member.getNo());
         // DTO로 변환
         StoreInfoDTO storeInfoDTO = new StoreInfoDTO();
@@ -112,7 +112,7 @@ public class AuthService {
         storeInfoDTO.setName(store.getName());
 
 
-        log.info("[AuthService] member 조회 {} ================== ", member);
+        log.info("[AuthService] store 조회 {} ================== ", member);
         log.info("[AuthService] member의 store 조회 {} ================== ", store);
 
         if(member == null){
