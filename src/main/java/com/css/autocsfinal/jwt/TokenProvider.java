@@ -33,7 +33,7 @@ public class TokenProvider {
 
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 8 * 60 * 60; // 8시간으로 설정
 
-    private final Key key;   // java.security.Key로 imort
+    private final Key key;
 
     private final UserDetailsService userDetailsService;
     public TokenProvider(@Value("${jwt.secret}") String secretKey, UserDetailsService userDetailsService){
@@ -105,10 +105,10 @@ public class TokenProvider {
 
         /* 클레임에서 권한 정보 가져오기 */
         Collection<? extends GrantedAuthority> authorities =
-                Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(",")) // ex: "ROLE_ADMIN"이랑 "ROLE_MEMBER"같은 문자열이 들어있는 문자열 배열
-                        .map(role -> new SimpleGrantedAuthority(role))   // 문자열 배열에 들어있는 권한 문자열 마다 SimpleGrantedAuthority 객체로 만듦
+                Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
+                        .map(role -> new SimpleGrantedAuthority(role))
                         .collect(Collectors.toList());
-        log.info("[TokenProvider] authorities {} ", authorities);   //   [TokenProvider] authorities [ROLE_ADMIN, ROLE_USER]
+        log.info("[TokenProvider] authorities {} ", authorities);
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserId(token));
         log.info("[TokenProvider] ===================== {}",  userDetails.getAuthorities());
