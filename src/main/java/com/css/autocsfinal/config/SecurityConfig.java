@@ -106,6 +106,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+//        configuration.setAllowedOrigins(Arrays.asList("http://autocs.coffit.today:3000"));  // 도커용
         configuration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("Access-Control-Allow-Origin", "Content-type"
                 , "Access-Control-Allow-Headers", "Authorization"
